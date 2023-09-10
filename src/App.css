@@ -31,7 +31,7 @@ body{
     justify-content: space-around;
 }
 main h2{
-    padding: 2em;
+    padding: 5em;
     display: grid;
     place-items: center;
     color: #fff;
