@@ -1,8 +1,10 @@
 import {combineReducers,createStore} from 'redux'
-import categories from './state'
+import categories from './Categories'
+import ShoppingListState from './ShoppingListState'
 
 let reducers = combineReducers({
     categories:categories,
+    ShoppingListState:ShoppingListState
 })
 
 const store = ()=>{

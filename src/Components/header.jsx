@@ -1,24 +1,24 @@
 import React from 'react'
-import { connect } from 'react-redux'
-import { select } from'../store/state'
-import ProfilHeaderIcon from './profileHeaderIcon'
+import Badge from '@mui/material/Badge';
+import ShoppingCartIcon from '@mui/icons-material/ShoppingCart';
+import ProfilHeader from './profileHeader'
+import {connect} from 'react-redux'
+import {changeShowCart} from '../store/ShoppingListState'
 
 function Header(props) {
-
+  
   return (
     <header>
         <h2>Our Website</h2>
-        <div className='navbar'>
-        {props.categories.categories.map((category,idx)=>{
-            return <h4 onClick={()=>props.select(idx)} key={idx}>{category.category}</h4>
-        })}
-        </div>
-        {/* <ProfilHeaderIcon/> */}
+          <Badge  color="secondary" badgeContent={props.ShoppingListState.count}>
+            <ShoppingCartIcon onClick={()=>props.changeShowCart()}/>{" "}
+          </Badge>
+        {/* <ProfilHeader/> */}
     </header>
   )
 }
-const mapStateToProps = (state) => ({
-    categories: state.categories
+const mapStateToProps = (state)=>({
+  ShoppingListState: state.ShoppingListState
 })
-const mapDispatchToProps = { select };
-export default connect(mapStateToProps,mapDispatchToProps)(Header);
+const mapDispatchToProps = {changeShowCart}
+export default connect(mapStateToProps,mapDispatchToProps)(Header)

@@ -12,7 +12,7 @@ function Main(props) {
       <div className='cards'>
       {
         props.categories.selectedCategory.products.map((product,idx)=>{
-          return <Product product={product}/>
+          return <Product product={product} key={idx}/>
         })
       }
       </div>
