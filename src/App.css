@@ -13,22 +13,33 @@ header{
     color: #fff;
     padding: 20px;
 }
-body{
-    background:rgba(99, 99, 99,0.3);
-}
+
 .cards{
     padding: 1vw;
     display: flex;
+    justify-content: center;
     gap: 1vw;
     flex-wrap: wrap;
+    
 }
 .cards div{
-    background-color: rgba(99, 99, 99,0.02);
+    background-color:rgba(0, 0, 0, 0);
+    width: 270px;
+    
+}
+.cards p{
+    word-wrap:normal;
+}
+.cards svg{
+    padding: 10px;
+    margin-left: 210px;
+    cursor: pointer;
 }
 .navbar{
     display: flex;
-    width: 25vw;
-    justify-content: space-around;
+    /* justify-content: center; */
+    /* gap:1vw; */
+    background-color:rgba(99, 99, 99,0.4)
 }
 main h2{
     padding: 5em;
@@ -38,7 +49,23 @@ main h2{
     text-shadow: 2px 2px 2px black;
 }
 .navbar h4{
-    border-left:2px solid #fff ;
-    padding: 5px;
+    border-right:2px solid ;
+    padding: 8px;
+    width: 20vw;
+    text-align: center;
+    cursor: pointer;
+    /* background-color:rgba(99, 99, 99,0.4); */
+}
+#shoppingList{
+    position: absolute;
+    background-color: #fff;
+    right: 0;
+    top :60px;
+    width: 40vw;
+    max-width: 400px;
+
+}
+header svg{
     cursor: pointer;
 }
+

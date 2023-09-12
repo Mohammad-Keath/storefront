@@ -3,10 +3,13 @@ import Card from '@mui/material/Card';
 import CardActions from '@mui/material/CardActions';
 import CardContent from '@mui/material/CardContent';
 import CardMedia from '@mui/material/CardMedia';
-import Button from '@mui/material/Button';
-import Typography from '@mui/material/Typography';
 
-function Product({product}) {
+import Typography from '@mui/material/Typography';
+import { connect } from 'react-redux'
+import {add} from '../store/ShoppingListState'
+import AddShoppingCartIcon from '@mui/icons-material/AddShoppingCart';
+
+function Product({product,add,ShoppingListState}) {
   return (
     <Card sx={{ maxWidth: 345 }}>
     <CardMedia
@@ -19,15 +22,19 @@ function Product({product}) {
         {product.name}
       </Typography>
       <Typography variant="body2" color="text.secondary">
-      Discription: {product.discription}
+      <p>{product.discription}</p>
       </Typography>
     </CardContent>
     <CardActions>
-      <Button size="small">Add to Cart</Button>
-      <Button size="small">Add to favorate</Button>
+      <AddShoppingCartIcon onClick={()=>{add(product)}}/>
+      {/* <Button size="small">Add to favorate</Button> */}
     </CardActions>
   </Card>
   );
 }
-
-export default Product;
+const mapDispatchToProps= {add}
+const mapStateToProps = (state)=>({
+  ShoppingListState:state.ShoppingListState
+})
+export default connect(mapStateToProps,mapDispatchToProps)(Product);
+// export default Product
