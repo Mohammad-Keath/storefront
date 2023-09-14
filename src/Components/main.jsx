@@ -1,18 +1,23 @@
-import React from 'react'
+import React, { useEffect } from 'react'
 import { connect } from 'react-redux'
+import {getApiData} from '../store/actions'
 import Product from './product'
 
 function Main(props) {
-  const backgroundStyle = {
-    backgroundImage: `url(${props.categories.selectedCategory.pic})`,
-  };
+  useEffect(()=>{
+    props.getApiData()
+  },[])
+  
   return (
     <main>
-      <h2 style={backgroundStyle}>{props.categories.selectedCategory.category}</h2>
       <div className='cards'>
       {
-        props.categories.selectedCategory.products.map((product,idx)=>{
-          return <Product product={product} key={idx}/>
+        props.storeState.items.map((product,idx)=>{
+          if(!props.storeState.selected){
+            return <Product product={product} key={idx}/>
+          }else{if(product.category == props.storeState.selected){
+            return <Product product={product} key={idx}/>
+          }}
         })
       }
       </div>
@@ -20,6 +25,7 @@ function Main(props) {
   )
 }
 const mapStateToProps = (state) => ({
-  categories: state.categories
+  storeState: state.storeState
 })
-export default connect(mapStateToProps)(Main);
+const mapDispatchToProps = {getApiData}
+export default connect(mapStateToProps,mapDispatchToProps)(Main);
