@@ -3,7 +3,7 @@ import Badge from '@mui/material/Badge';
 import ShoppingCartIcon from '@mui/icons-material/ShoppingCart';
 import ProfilHeader from './profileHeader'
 import {connect} from 'react-redux'
-import {changeShowCart} from '../store/ShoppingListState'
+import {changeShowCart} from '../store/actions'
 
 function Header(props) {
   

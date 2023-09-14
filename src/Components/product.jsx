@@ -6,23 +6,23 @@ import CardMedia from '@mui/material/CardMedia';
 
 import Typography from '@mui/material/Typography';
 import { connect } from 'react-redux'
-import {add} from '../store/ShoppingListState'
+import {add} from '../store/actions'
 import AddShoppingCartIcon from '@mui/icons-material/AddShoppingCart';
 
-function Product({product,add,ShoppingListState}) {
+function Product({product,add}) {
   return (
     <Card sx={{ maxWidth: 345 }}>
     <CardMedia
       sx={{ height: 140 }}
-      image={product.photo}
-      title={product.name}
+      image={product.images[0]}
+      title={product.title}
     />
     <CardContent>
       <Typography gutterBottom variant="h5" component="div">
-        {product.name}
+        {product.title}
       </Typography>
       <Typography variant="body2" color="text.secondary">
-      <p>{product.discription}</p>
+      {/* <p>{product.description}</p> */}
       </Typography>
     </CardContent>
     <CardActions>

@@ -1,6 +1,6 @@
 const initialState = {
     showCart:false,
-    items:[],
+    cartItems:[],
     count:0
 }
 export default (state = initialState, action)=>{
@@ -8,87 +8,58 @@ export default (state = initialState, action)=>{
     switch(type){
         case 'add':
             let itemsList
-            if(state.items.find(item=>item.name == payload.name)){
-                 itemsList = state.items.map(item=>{
-                    if(item.name==payload.name){
+            if(state.cartItems.find(item=>item.id == payload.id)){
+                 itemsList = state.cartItems.map(item=>{
+                    if(item.id==payload.id){
                         return {...item,count:item.count+1}
                     }else{return item}
                 })   
-            }else {itemsList =[...state.items,{...payload,count:1}]}
+            }else {itemsList =[...state.cartItems,{...payload,count:1}]}
             return{
                 showCart:state.showCart,
-                items:itemsList,
+                cartItems:itemsList,
                 count:state.count+1,
             }
         case 'remove':
-            const shoppingList = state.items.filter((item)=> item.name!==payload.name)
+            const shoppingList = state.cartItems.filter((item)=> item.id!==payload.id)
             return{
                 showCart:state.showCart,
-                items:shoppingList,
+                cartItems:shoppingList,
                 count:state.count-payload.count,
             }
         case 'changeShowCart':
             return{
                 showCart:!state.showCart,
-                items:state.items,
+                cartItems:state.cartItems,
                 count:state.count,
             }
         case 'addToSpecific':
-            const list = state.items.map(item=>{
-                if(item.name==payload.name){
+            const list = state.cartItems.map(item=>{
+                if(item.id==payload.id){
                     return {...item,count:item.count+1}
                 }else{return item}})
             return{
             showCart:state.showCart,
-            items:list,
+            cartItems:list,
             count:state.count,
             }
         case 'removeFromSpecific':
             let itemlist
             if(payload.count == 1){
-                itemlist = state.items.filter((item)=> item.name!==payload.name)
+                itemlist = state.cartItems.filter((item)=> item.id!==payload.id)
             }
             else{
-            itemlist = state.items.map(item=>{
-                if(item.name==payload.name){
+            itemlist = state.cartItems.map(item=>{
+                if(item.id==payload.id){
                     return {...item,count:item.count-1}
                 }else{return item}})}
             return{
             showCart:state.showCart,
-            items:itemlist,
-            count:state.count,
+            cartItems:itemlist,
+            count:state.count-1,
             }
         
         default:
             return state
-    }
-}
-export const add = (item)=>{
-    return{
-        type:'add',
-        payload:item
-    }
-}
-export const remove = (item)=>{
-    return{
-        type:'remove',
-        payload:item
-    }
-}
-export const changeShowCart = (payload)=>{
-    return{
-        type:'changeShowCart',
-    }
-}
-export const addToSpecific = (payload)=>{
-    return{
-        type:'addToSpecific',
-        payload:payload
-    }
-}
-export const removeFromSpecific = (payload)=>{
-    return{
-        type:'removeFromSpecific',
-        payload:payload
     }
 }
