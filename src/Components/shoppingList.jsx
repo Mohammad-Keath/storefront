@@ -1,6 +1,7 @@
 import React from 'react'
 import { connect } from 'react-redux'
 import { remove,changeShowCart,removeFromSpecific,addToSpecific} from '../store/actions'
+import { Link } from 'react-router-dom';
 import List from '@mui/material/List';
 import ListItem from '@mui/material/ListItem';
 import ListItemText from '@mui/material/ListItemText';
@@ -36,6 +37,7 @@ function ShoppingList(props) {
             </ListItem>
             )
           })}
+          <Link to='/basket'>Show basket</Link>
           </List>
         }
         </div>
