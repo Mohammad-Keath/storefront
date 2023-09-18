@@ -14,7 +14,7 @@ function Main(props) {
       {
         props.storeState.items.map((product,idx)=>{
           if(!props.storeState.selected){
-            return <Product product={product} key={idx}/>
+            return <Product product={product} key={idx} />
           }else{if(product.category == props.storeState.selected){
             return <Product product={product} key={idx}/>
           }}
